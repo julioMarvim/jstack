@@ -29,6 +29,14 @@ const server = http.createServer((request, response) => {
   if(route){
     request.query = Object.fromEntries(parsedUrl.searchParams);
     request.params = { id };
+
+    response.send  = (statusCode, body) => {
+      /* Estou enviando um statusCode 200 e um JSON como resposta. */
+      response.writeHead(statusCode, {'Content-Type': 'application/json'});
+      /* O valor do parametro do metodo end deve ser uma string. */
+      response.end(JSON.stringify(body));
+    }
+
     route.handler(request, response);
   }else {
     response.writeHead(404, {'Content-Type': 'text/html'});
