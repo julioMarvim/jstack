@@ -9,16 +9,26 @@ const server = http.createServer((request, response) => {
   /* Utilizando este metodo e o segundo parametro 'parseQueryString' = true
   conseguimos transformar os queryParams em um objeto, pq por padrão ele é uma string. */
   const parsedUrl = new URL(`http://localhost:3000${request.url}`);
+  let { pathname } = parsedUrl;
+  let id = null;
 
   /* Neste momento estou logando o metodo http e a url. */
-  console.log(`Request method: ${request.method} | endpoint: ${parsedUrl.pathname}`);
+  console.log(`Request method: ${request.method} | endpoint: ${pathname}`);
+
+  const splitEndpoint = pathname.split('/').filter((routeItem)=>Boolean(routeItem));
+
+  if(splitEndpoint.length > 1){
+    pathname = `/${splitEndpoint[0]}/:id`;
+    id = splitEndpoint[1];
+  }
 
   const route = routes.find((routeObj) => (
-    routeObj.endpoint === parsedUrl.pathname && routeObj.method === request.method
+    routeObj.endpoint === pathname && routeObj.method === request.method
   ));
 
   if(route){
     request.query = Object.fromEntries(parsedUrl.searchParams);
+    request.params = { id };
     route.handler(request, response);
   }else {
     response.writeHead(404, {'Content-Type': 'text/html'});
