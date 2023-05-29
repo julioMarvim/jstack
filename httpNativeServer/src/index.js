@@ -1,14 +1,14 @@
 /* Começamos importando o modulo nativo: */
 const http = require('http');
 const routes = require('./routes');
-const url = require('url');
+const {URL } = require('url');
 
 /* Iniciando a constução do servidor */
 const server = http.createServer((request, response) => {
-  
+
   /* Utilizando este metodo e o segundo parametro 'parseQueryString' = true
   conseguimos transformar os queryParams em um objeto, pq por padrão ele é uma string. */
-  const parsedUrl = url.parse(request.url, true);
+  const parsedUrl = new URL(`http://localhost:3000${request.url}`);
 
   /* Neste momento estou logando o metodo http e a url. */
   console.log(`Request method: ${request.method} | endpoint: ${parsedUrl.pathname}`);
@@ -18,7 +18,7 @@ const server = http.createServer((request, response) => {
   ));
 
   if(route){
-    request.query = parsedUrl.query;
+    request.query = Object.fromEntries(parsedUrl.searchParams);
     route.handler(request, response);
   }else {
     response.writeHead(404, {'Content-Type': 'text/html'});
