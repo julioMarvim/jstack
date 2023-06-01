@@ -15,5 +15,6 @@ module.exports = {
     'class-methods-use-this': 'off',
     'linebreak-style': 'off',
     'import/no-extraneous-dependencies': 'off',
+    camelcase: 'off',
   },
 };
