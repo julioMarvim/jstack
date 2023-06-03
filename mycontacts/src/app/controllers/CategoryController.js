@@ -17,6 +17,19 @@ class CategoryController {
 
     return response.json(category);
   }
+
+  async show(request, response) {
+    const { id } = request.params;
+    console.log(id);
+
+    const category = await CategoriesRepository.findById(id);
+
+    if (!category) {
+      return response.status(404).json({ error: 'Category not found' });
+    }
+
+    return response.json(category);
+  }
 }
 
 module.exports = new CategoryController();
