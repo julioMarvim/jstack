@@ -1,4 +1,5 @@
 const ContactsRepository = require('../repositories/ContactsRepository');
+const CategoriesRepository = require('../repositories/CategoriesRepository');
 
 class ContactController {
   async index(request, response) {
@@ -28,9 +29,14 @@ class ContactController {
     }
 
     const contactExists = await ContactsRepository.findByEmail(email);
+    const categoryExists = await CategoriesRepository.findById(category_id);
 
     if (contactExists) {
       return response.status(400).json({ error: 'This e-mail is already in use.' });
+    }
+
+    if (!categoryExists) {
+      return response.status(404).json({ error: 'Category not found' });
     }
 
     const contact = await ContactsRepository.create({
@@ -49,9 +55,14 @@ class ContactController {
     } = request.body;
 
     const contactExists = await ContactsRepository.findById(id);
+    const categoryExists = await CategoriesRepository.findById(category_id);
 
     if (!contactExists) {
       return response.status(404).json({ error: 'Contact not found' });
+    }
+
+    if (!categoryExists) {
+      return response.status(404).json({ error: 'Category not found' });
     }
 
     if (!name) {
