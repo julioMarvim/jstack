@@ -16,5 +16,6 @@ module.exports = {
     'linebreak-style': 'off',
     'import/no-extraneous-dependencies': 'off',
     camelcase: 'off',
+    'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
   },
 };
