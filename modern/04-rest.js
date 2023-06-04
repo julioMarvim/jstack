@@ -7,7 +7,7 @@ const user = {
 }
 
 
-/* <==> <==>  REST(RESTO) OPERATOR <==> <==>
+/* <==> <==>  REST (RESTO) OPERATOR <==> <==>
 
 Recebe todo o resto das propriedades ou posições de um array
 durante a desestruturação. É obrigatorio ser definido como o
