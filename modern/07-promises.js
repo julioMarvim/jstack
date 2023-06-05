@@ -33,8 +33,8 @@ banco de dados, chamadas para API`s dentre outros casos
 const apiCall = new Promise((resolve, reject) => {
   setTimeout(() => {
     /* Será executado após 2000 milissegundos. */
-    //resolve({ response: 'Sucesso!' });
-    reject({ error: 'Deu erro!' });
+    resolve({ response: 'Sucesso!' });
+    //reject({ error: 'Deu erro!' });
   }, 2000);
 });
 
@@ -53,12 +53,45 @@ apiCall
     /* Coloquei o parâmetro "resolve" só pra facilitar
     o entendimento, mas poderia ter qualquer nome, este
     parametro irá representar a resposta da promise. */
-    console.log(resolve);
+    console.log('[Chamada com then: ]', resolve);
   })
   .catch((reject) => {
     /* Neste caso, se a nossa promise for resolvida por
     um "reject" então podemos utilizar o metodo catch e
     capturar o erro que será lançado. Para testar basta
     comentar a linha 36 e descomentar a linha 37 */
-    console.log(reject);
+    console.log('[Chamada com catch: ]', reject);
   });
+
+
+/* <==> <==> <==> <==> async/await <==> <==> <==> <==>
+
+Semelhantemente a forma de utilizar then e catch usando
+nós podemos capturar as respostas e os erros de funcões
+assicronas usando await no momento da chamada para essa
+função. Porém esta função precisa ser chamada dentro de
+uma outra função que esteja assinada com a key asinc no
+momento de declaração como mostra a seguir.*/
+
+async function run(){
+  /* Para fazer com que os erros sejam capturados será
+  necessário envolver a chamada da função com e tratar
+  os erros com try catch, assim o erro retornado com a
+  função 'reject' será armazenado dento de 'erro'. */
+  try {
+    const resposta = await apiCall;
+    console.log('[Chamada com await: ]', resposta);
+  } catch (erro) {
+    //dara erro se a linha 37 estiver descomentada.
+    console.log('[Chamada com await: ]', erro);
+  }
+}
+
+run();
+
+/* <==> <==> <==> <==> IMPORTANTE <==> <==> <==> <==>
+
+Quando precisamos de utilizar o retorno de uma chamada
+assincrona, no caso de usarmos then e catch, então nós
+precisamos colocar o consumo deste retorno nas chamada
+dentro deo then. Ou então utilizar o assinc await. */
