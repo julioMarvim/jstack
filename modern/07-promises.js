@@ -88,3 +88,10 @@ async function run(){
 }
 
 run();
+
+/* <==> <==> <==> <==> IMPORTANTE <==> <==> <==> <==>
+
+Quando precisamos de utilizar o retorno de uma chamada
+assincrona, no caso de usarmos then e catch, então nós
+precisamos colocar o consumo deste retorno nas chamada
+dentro deo then. Ou então utilizar o assinc await. */
