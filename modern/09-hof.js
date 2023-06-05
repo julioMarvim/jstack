@@ -43,3 +43,31 @@ const findIndex = array.findIndex((product) => {
 });
 
 console.log({ findIndex });
+
+/* <==> <==> <==> <==> <==>.some()<==> <==> <==> <==> <==>
+
+Percorre o array quando ele encontrar algum item que seja
+verdadeiro mediante determinada condição impelementada na
+sua função de callback, então ele irá retornar um boolean
+para o item encontrado. */
+
+const some = array.some((product) => {
+  /* Irá retornar true para o terceiro item da lista.*/
+  return product.quantity > 2;
+});
+
+console.log({ some });
+
+/* <==> <==> <==> <==> <=>.every()<=> <==> <==> <==> <==>
+
+Percorre o array e verifica se todos os itens respeitam a
+regra que foi determinada na condição em sua implementada
+na sua função de callback, e assun retornará um boolean*/
+
+const every = array.every((product) => {
+  /* Retornará true pois para todos os itens será verdade
+  */
+  return product.price >= 1000;
+});
+
+console.log({ every });
