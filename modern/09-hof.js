@@ -109,3 +109,36 @@ const filter = array.filter((product) => {
 
 console.log({ filter });
 
+/*<==> <==> <==> <==> <=>.reduce()<=> <==> <==> <==> <==>
+
+Transforma nosso array em um outro tipo de dado, seja ele
+qual for. Ele recebe dois parametros, primeiro uma função
+e segundo o valor inicual do retorno deste reduce.
+
+Para esta função do primeiro parametro do reduce temosque
+passar dois parametros:*/
+
+const acucumulatorReduce = array.reduce((accumulator, product) => {
+  /*
+  -> accumulator: que é uma variável que se comporta como a
+  variavel que usamos fora das nossas iterações normais, um
+  for ou while. tipo uma variavel 'contador', porém esta se
+  inicia com o valor do segundo parametro do reduce e então
+  a partir dai ela vai sendo sobrescrita com o valor que se
+  retorna em cada iteração no array.
+  */
+  console.log(accumulator);
+  return accumulator + 1;
+}, 0);
+
+console.log({ acucumulatorReduce });
+
+const totalCompas = array.reduce((accumulator, product) => {
+  /* -> item: neste caso será a variável que vai guardar o
+  valor do item que está armazenado naquela posição do seu
+  array. */
+ return accumulator + (product.quantity * product.price)
+}, 0);
+
+console.log({ totalCompas });
+
