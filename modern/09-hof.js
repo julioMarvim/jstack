@@ -25,7 +25,7 @@ const find = array.find((product) => {
   return product.name === 'Magic Mouse';
 });
 
-console.log(find);
+console.log({ find });
 
 /* <==> <==> <==> <==>  .findIndex()  <==> <==> <==> <==>
 
@@ -83,10 +83,29 @@ retornamos na função de callback em cada posição do array
 */
 
 const map = array.map((product) => {
+  /* Irá retornar um novo array contendo tres objetos que
+  possuiem as propriedades de product mais uma nova que é
+  subtotal em cada item.  */
   return {
     ...product,
     subtotal: product.quantity * product.price
   };
 });
 
-console.log(map);
+console.log({ map });
+
+/*<==> <==> <==> <==> <=>.filter()<=> <==> <==> <==> <==>
+
+Podemos fazer uma validação para filtrar o array, remover
+dele os elementos que não respeitam as condições da nossa
+validação. O filter criará um novo array, contendo apenas
+os itens que atendam às regras da nossa validação.*/
+
+const filter = array.filter((product) => {
+  /* Irá retornar um novo array com apenas duas posições.
+   */
+  return product.quantity > 1;
+});
+
+console.log({ filter });
+
