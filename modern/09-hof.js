@@ -71,3 +71,22 @@ const every = array.every((product) => {
 });
 
 console.log({ every });
+
+/* <==> <==> <==> <==> <==>.map()<==> <==> <==> <==> <==>
+
+Com base no array anterior, ele cria um novo array com as
+alterações realizadas em cada item ou com os itens que se
+adequem às regras realizadas na sua função interna, mas é
+importante frizar que sempre ele retornará um array com o
+mesmo numero de posições que o original. Ele coloca o que
+retornamos na função de callback em cada posição do array
+*/
+
+const map = array.map((product) => {
+  return {
+    ...product,
+    subtotal: product.quantity * product.price
+  };
+});
+
+console.log(map);
