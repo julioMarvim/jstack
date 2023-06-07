@@ -1,4 +1,5 @@
-/* Principais diferenças entre funções tradicionais e arrow functions */
+/* Principais diferenças entre as funções tradicionais e
+as arrow functions */
 
 /* >=> >=> >=> >=> >=> >=> this <=< <=< <=< <=< <=< <=<
                      ARROW FUNCTION
